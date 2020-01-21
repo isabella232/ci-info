@@ -1,5 +1,5 @@
 {
-  "name": "@qawolf/ci-info",
+  "name": "@prisma/ci-info",
   "version": "2.1.0",
   "description": "Get details about the current Continuous Integration environment",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "tape": "^4.9.1"
   },
   "scripts": {
-    "test": "standard && node test.js"
+    "test": "standard --fix && standard && node test.js"
   },
   "repository": {
     "type": "git",

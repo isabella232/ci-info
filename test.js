@@ -3,7 +3,9 @@
 var test = require('tape')
 var clearModule = require('clear-module')
 
-var isActualPR = !!(process.env.TRAVIS_PULL_REQUEST && process.env.TRAVIS_PULL_REQUEST !== 'false')
+var isActualPR = !!(
+  process.env.TRAVIS_PULL_REQUEST && process.env.TRAVIS_PULL_REQUEST !== 'false'
+)
 
 test('Known CI', function (t) {
   process.env.TRAVIS = 'true'
@@ -92,7 +94,8 @@ test('AppVeyor - Not PR', function (t) {
 })
 
 test('Azure Pipelines - PR', function (t) {
-  process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI = 'https://dev.azure.com/Contoso'
+  process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI =
+    'https://dev.azure.com/Contoso'
   process.env.SYSTEM_PULLREQUEST_PULLREQUESTID = '42'
 
   clearModule('./')
@@ -111,7 +114,8 @@ test('Azure Pipelines - PR', function (t) {
 })
 
 test('Azure Pipelines - Not PR', function (t) {
-  process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI = 'https://dev.azure.com/Contoso'
+  process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI =
+    'https://dev.azure.com/Contoso'
 
   clearModule('./')
   var ci = require('./')
@@ -532,6 +536,22 @@ test('GitHub Actions - Not PR', function (t) {
   delete process.env.GITHUB_ACTIONS
   delete process.env.GITHUB_EVENT_NAME
 
+  t.end()
+})
+
+test('Zeit Now', function (t) {
+  process.env.NOW_BUILDER = '1'
+
+  clearModule('./')
+  var ci = require('./')
+
+  t.equal(ci.isCI, true)
+  t.equal(ci.isPR, null)
+  t.equal(ci.name, 'Zeit Now')
+  t.equal(ci.ZEIT_NOW, true)
+  assertVendorConstants('ZEIT_NOW', ci, t)
+
+  delete process.env.NOW_BUILDER
   t.end()
 })
 

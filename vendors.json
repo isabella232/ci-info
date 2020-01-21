@@ -161,5 +161,10 @@
     "constant": "TRAVIS",
     "env": "TRAVIS",
     "pr": { "env": "TRAVIS_PULL_REQUEST", "ne": "false" }
+  },
+  {
+    "name": "Zeit Now",
+    "constant": "ZEIT_NOW",
+    "env": "NOW_BUILDER"
   }
 ]
