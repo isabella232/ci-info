@@ -1,3 +1,7 @@
+# 2.1.2 / 2020-01-21
+
+- add types
+
 # 2.1.1 / 2020-01-21
 
 - add support for zeit now
